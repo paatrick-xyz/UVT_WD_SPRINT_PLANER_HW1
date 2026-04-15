@@ -1,0 +1,19 @@
+:root {
+    /* Font Variables */
+    --main-font: "Geologica", sans-serif;
+    --font-weight-reg: 400;
+    --font-weight-bold: 700;
+    
+    /* Background Variables */
+    --bg-color: #EFEFEF;
+    --dot-color: #D2D6DB;
+    --dot-size: 2px;
+    --dot-spacing: 24px;
+}
+
+body{
+    background-color: var(--bg-color);
+    background-image: radial-gradient(var(--dot-color) 5px,transparent 2px);
+    background-size: var(--dot-spacing) var(--dot-spacing);
+    font-family: Geologica;
+}
