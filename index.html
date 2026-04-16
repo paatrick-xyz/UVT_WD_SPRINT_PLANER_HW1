@@ -22,8 +22,33 @@
         </nav>
     </header>
     <main id="main_content">
-    
-    
+    <section class="new-sprint-card">
+        <header class="add-header">
+                <h2>New Sprint</h2>
+        </header>
+        <form class="add-sprint">
+            <div class="form-group">
+                <label for="sprint-name">Name</label>
+                <textarea type="text" id="sprint-name" name="sprint-name" class="sprint-name-area" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="sprint-desc">Description</label>
+                <textarea type="text" id="sprint-desc" name="sprint-desc" class="sprint-desc-area" required></textarea>
+            </div>
+            <div class="priority-cont">
+                <div class="priority-circles">
+                    <span class="priority">Priority</span>
+                    <button type="button" class="priority-btn pr0">0</button>
+                    <button type="button" class="priority-btn pr1">1</button>
+                    <button type="button" class="priority-btn pr2">2</button>
+                    <button type="button" class="priority-btn pr3">3</button>
+                    <button type="button" class="priority-btn pr4">4</button>
+                    <button type="button" class="priority-btn pr5">5</button>
+                </div>
+            </div>
+            <button type="submit" class="submit-btn">CREATE SPRITE +</button>
+        </form>
+    </section>
     </main>
 </body>
 </html>
