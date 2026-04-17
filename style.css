@@ -7,8 +7,8 @@
     /* Background Variables */
     --bg-color: #EFEFEF;
     --dot-color: #D2D6DB;
-    --dot-size: 2px;
-    --dot-spacing: 24px;
+    --dot-size: 7px;
+    --dot-spacing: 44px;
 }
 
 body{
@@ -199,4 +199,50 @@ main{
     font-weight: var(--font-weight-bold);
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     cursor: pointer;
+}
+
+
+.sprint-board{
+    display: flex;
+    gap: 0px;
+    flex-grow: 1;
+    align-items: flex-start;
+}
+
+.board-column{
+    background-color: #FAFAFA;
+    flex: 1;
+    min-width: 300px;
+    overflow: hidden;
+    box-shadow: -5px 0px 4px rgba(0,0,0,0.25);
+    height: 100%;
+}
+
+.c0{
+    border-radius: 25px 10px 0 0;
+    box-shadow: 0 0 0 rgba(0,0,0,0);
+}
+.c1{
+    border-radius: 10px 10px 0 0;
+}
+.c2{
+    border-radius: 10px 25px 0 0;
+}
+.column-header{
+    padding: 20px;
+    border-bottom: 4px solid #000;
+}
+
+.column-header h3{
+    font-family: var(--main-font);
+    font-weight: var(--font-weight-bold);
+    font-size: 30px;
+    margin: 0;
+}
+
+.column-content{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
