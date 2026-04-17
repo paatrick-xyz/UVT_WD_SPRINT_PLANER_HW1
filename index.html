@@ -6,20 +6,14 @@
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geologica:wght,CRSV@100..900,0&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geologica:wght,CRSV@100..900,0&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <a href="#main_content" class="skip-link">Skip to main content</a>
     <header>
         <h1>Study Sprint Planner</h1>
-        <nav>
-            <ul>
-                <li><a href="about.html">About me & Project</a></li>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="feedback.html">Feedback</a></li>
-            </ul>
-        </nav>
+        
     </header>
     <main id="main_content">
     <section class="new-sprint-card">
@@ -29,11 +23,11 @@
         <form class="add-sprint">
             <div class="form-group">
                 <label for="sprint-name">Name</label>
-                <textarea type="text" id="sprint-name" name="sprint-name" class="sprint-name-area" required></textarea>
+                <textarea id="sprint-name" name="sprint-name" class="sprint-name-area" required></textarea>
             </div>
             <div class="form-group">
                 <label for="sprint-desc">Description</label>
-                <textarea type="text" id="sprint-desc" name="sprint-desc" class="sprint-desc-area" required></textarea>
+                <textarea id="sprint-desc" name="sprint-desc" class="sprint-desc-area" required></textarea>
             </div>
             <div class="priority-cont">
                 <div class="priority-circles">
@@ -53,29 +47,170 @@
     <div class="sprint-board">
         <section class="board-column c0">
             <header class="column-header">
-                <h3>Sprinted (0)</h3>
+                <h3>Sprinted (2)</h3>
             </header>
             <div class="column-content">
-                </div>
+                <article class="sprint-card sc2">
+                    <div class="card-inner">
+                        <svg class="dropdown-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 4V10C4 12.2091 5.79086 14 8 14H20M20 14L16 10M20 14L16 18" 
+                                stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                        <h4>ASD Test SPRINT</h4>
+                        <div class="priority-circle">2</div>
+                    </div>
+                </article>
+
+                <article class="sprint-card-expended sc2e">
+                    <div class="card-inner">
+                        <svg class="dropdown-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 4V10C4 12.2091 5.79086 14 8 14H20M20 14L16 10M20 14L16 18" 
+                                stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                        <h4>Homework SPRINT</h4>
+                        <div class="priority-circle">2</div>
+                    </div>
+                    <div class="card-body">
+                        <h5>Description</h5>
+                        <div class="desc-box">
+                            <p>This is a simple description for the homework sprint.</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
         </section>
 
         <section class="board-column c1">
             <header class="column-header">
-                <h3>Current Sprint (0)</h3>
+                <h3>Current Sprint (3)</h3>
             </header>
             <div class="column-content">
-                </div>
+                <article class="sprint-card-expended sc0e">
+                    <div class="card-inner">
+                        <svg class="dropdown-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 4V10C4 12.2091 5.79086 14 8 14H20M20 14L16 10M20 14L16 18" 
+                                stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                        <h4>Homework SPRINT</h4>
+                        <div class="priority-circle">0</div>
+                    </div>
+                    <div class="card-body">
+                        <h5>Description</h5>
+                        <div class="desc-box">
+                            <p>This is a simple description for the homework sprint.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="sprint-card sc1">
+                    <div class="card-inner">
+                        <svg class="dropdown-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 4V10C4 12.2091 5.79086 14 8 14H20M20 14L16 10M20 14L16 18" 
+                                stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                        <h4>ASD Test SPRINT</h4>
+                        <div class="priority-circle">1</div>
+                    </div>
+                </article>
+
+                <article class="sprint-card-expended sc4e">
+                    <div class="card-inner">
+                        <svg class="dropdown-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 4V10C4 12.2091 5.79086 14 8 14H20M20 14L16 10M20 14L16 18" 
+                                stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                        <h4>Homework SPRINT</h4>
+                        <div class="priority-circle">4</div>
+                    </div>
+                    <div class="card-body">
+                        <h5>Description</h5>
+                        <div class="desc-box">
+                            <p>This is a simple description for the homework sprint.</p>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
         </section>
 
         <section class="board-column c2">
             <header class="column-header">
-                <h3>Next Sprint (0)</h3>
+                <h3>Next Sprint (4)</h3>
             </header>
             <div class="column-content">
+
+                <article class="sprint-card sc1">
+                    <div class="card-inner">
+                        <svg class="dropdown-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 4V10C4 12.2091 5.79086 14 8 14H20M20 14L16 10M20 14L16 18" 
+                                stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                        <h4>ASD Test SPRINT</h4>
+                        <div class="priority-circle">1</div>
+                    </div>
+                </article>
+
+                <article class="sprint-card-expended sc4e">
+                    <div class="card-inner">
+                        <svg class="dropdown-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 4V10C4 12.2091 5.79086 14 8 14H20M20 14L16 10M20 14L16 18" 
+                                stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                        <h4>Homework SPRINT</h4>
+                        <div class="priority-circle">4</div>
+                    </div>
+                    <div class="card-body">
+                        <h5>Description</h5>
+                        <div class="desc-box">
+                            <p>This is a simple description for the homework sprint.</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="sprint-card-expended sc2e">
+                    <div class="card-inner">
+                        <svg class="dropdown-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 4V10C4 12.2091 5.79086 14 8 14H20M20 14L16 10M20 14L16 18" 
+                                stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                        <h4>Homework SPRINT</h4>
+                        <div class="priority-circle">2</div>
+                    </div>
+                    <div class="card-body">
+                        <h5>Description</h5>
+                        <div class="desc-box">
+                            <p>This is a simple description for the homework sprint.</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="sprint-card-expended sc0e">
+                    <div class="card-inner">
+                        <svg class="dropdown-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 4V10C4 12.2091 5.79086 14 8 14H20M20 14L16 10M20 14L16 18" 
+                                stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                        <h4>Homework SPRINT</h4>
+                        <div class="priority-circle">0</div>
+                    </div>
+                    <div class="card-body">
+                        <h5>Description</h5>
+                        <div class="desc-box">
+                            <p>This is a simple description for the homework sprint.</p>
+                        </div>
+                    </div>
+                </article>
+                
                 </div>
         </section>
     </div>
     </main>
-
+    <footer class="bottom-nav">
+        <nav>
+            <ul>
+                <li><a href="about.html">About me & Project</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+        </nav>
+    </footer>
 </body>
 </html>
