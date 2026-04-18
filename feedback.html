@@ -3,9 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <title>About me and the Study Sprint Planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geologica:wght,CRSV@100..900,0&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <a href="#main_content" class="skip-link">Skip to main content</a>
+    <main id="main_content">
     
+
+    <div class="sprint-board">
+        <section class="board-column c0">
+            <header class="column-header">
+                <h3>Feedback</h3>
+            </header>
+            <div class="about-project">
+                <form action="#" method="post" class="feedback-form">
+                    <fieldset>
+                        
+
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+
+                        <label for="rating">Rating:</label>
+                        <select id="rating" name="rating" required>
+                            <option value="">Select a rating</option>
+                            <option value="1">1 - Poor</option>
+                            <option value="2">2 - Fair</option>
+                            <option value="3">3 - Good</option>
+                            <option value="4">4 - Very Good</option>
+                            <option value="5">5 - Excellent</option>
+                        </select>
+                        
+                        <label for="feedback">Feedback:</label>
+                        <textarea id="feedback" name="feedback" rows="4" required></textarea>
+
+                        <button type="submit" class="submit-btn">Send Feedback</button>
+                    </fieldset>
+
+                </form>
+            </div>
+        </section>
+    </div>
+    </main>
+    <div class="bottom-nav">
+        <nav>
+            <ul>
+                <li><a href="about.html">About me & Project</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+        </nav>
+    </div>
+
 </body>
 </html>

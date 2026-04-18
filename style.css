@@ -440,3 +440,46 @@ main{
     font-size: 20px;
     letter-spacing: 0.5px;
 }
+
+.feedback-form{
+    padding: 20px;
+}
+
+.feedback-form fieldset{
+    border:none;
+    padding: 0;
+}
+
+.feedback-form legend{
+    font-size: 24px;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 20px;  
+}
+
+.feedback-form label{
+    display: block;
+    font-size: 18px;
+    margin: 15px 0 5px 0;
+    font-weight: var(--font-weight-reg);
+}
+
+.feedback-form input, .feedback-form textarea, .feedback-form select{
+    width: 100%;
+    background: #FFF;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 20px;
+    padding-right: 300px;
+    font-weight: var(--font-weight-bold);
+    font-family: var(--main-font);
+    box-sizing: border-box;
+}
+
+.submit-btn{
+    margin-top: 25px;
+    background-color: var(--pr5-color);
+    color: #FFF;
+    border: none;
+    padding: 15px;
+}
