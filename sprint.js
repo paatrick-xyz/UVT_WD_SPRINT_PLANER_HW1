@@ -20,19 +20,19 @@ function loadSprints(){
 
 function buildCardElement(sprint){
     let article = document.createElement('article');
-    article.className = 'sprint-card sc'+ selectedPriority; // making the class of the new card matching the format sc + priority + e (sprint-card-expended sc0e")
+    article.className = 'sprint-card sc'+ sprint.prioity; // making the class of the new card matching the format sc + priority + e (sprint-card-expended sc0e")
     article.innerHTML = '<div class="card-inner">'+
     '<svg class="dropdown-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">' +
     '<path d="M4 4V10C4 12.2091 5.79086 14 8 14H20M20 14L16 10M20 14L16 18" ' +
     'stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>'+
     '</svg>'+
-    '<h4>'+sprintName+'</h4>'
-    +'<div class="priority-circle">'+selectedPriority+'</div>'+
+    '<h4>'+sprint.name+'</h4>'
+    +'<div class="priority-circle">'+ sprint.prioity +'</div>'+
     '</div>'+
     '<div class="card-body" style="display: none;">'+
     '<h5>Description</h5>'+
     '<div class="desc-box">'+
-    '<p>'+sprintDescription+'</p>'+
+    '<p>'+sprint.description+'</p>'+
     '</div>'+
     '</div>';
     return article;
@@ -110,26 +110,18 @@ sprintForm.addEventListener('submit', function(event) {
         alert('Please select a priority.');
         return;
     }
-    let newCard = document.createElement('article');
-    newCard.className = 'sprint-card-expended sc'+ selectedPriority + 'e'; // making the class of the new card matching the format sc + priority + e (sprint-card-expended sc0e")
-    newCard.innerHTML = '<div class="card-inner">'+
-    '<svg class="dropdown-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">' +
-    '<path d="M4 4V10C4 12.2091 5.79086 14 8 14H20M20 14L16 10M20 14L16 18" ' +
-    'stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>'+
-    '</svg>'+
-    '<h4>'+sprintName+'</h4>'
-    +'<div class="priority-circle">'+selectedPriority+'</div>'+
-    '</div>'+
-    '<div class="card-body">'+
-    '<h5>Description</h5>'+
-    '<div class="desc-box">'+
-    '<p>'+sprintDescription+'</p>'+
-    '</div>'+
-    '</div>';
-
-    let nextSprintColumn = document.querySelector('.c2 .column-content');
-    nextSprintColumn.appendChild(newCard);
-    console.log('New sprint card added to the column.');
+    let newCard = {
+        name:sprintName,
+        description:sprintDescription,
+        prioity:selectedPriority,
+        column:'next'
+    };
+    sprints.push(newCard);
+    saveSprint(sprints);
+    let card = buildCardElement(newCard);
+    let column = getColumnElement('next');
+    column.appendChild(card);
+    console.log('New sprint saved and added to board:', newCard);
 
     document.getElementById('sprint-name').value = '';
     document.getElementById('sprint-desc').value = '';
