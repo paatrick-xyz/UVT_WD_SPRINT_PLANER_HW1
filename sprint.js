@@ -92,27 +92,48 @@ sprintForm.addEventListener('submit', function(event) {
     //                </div>
 });
 
+
+// COLAPSE AND EXPAND CARD
+
 document.addEventListener('click', function(event) { // dropdown for the card
     let arrow = event.target.closest('.dropdown-arrow');
     if (arrow===null) return;
     let cardInner = arrow.closest('.card-inner');
+    let card = arrow.closest('article');
     let cardBody = cardInner.nextElementSibling;
+
     if(cardBody===null){
-        cardBody.style.display = 'block';
-        //arrow.style.transform = 'rotate(180deg)';
-        cardBody.dataset.open = 'true';
-        console.log('Card expanded.');
+        cardBody = document.createElement('div');
+        cardBody.className   = 'card-body';
+        cardBody.style.display = 'none'; // start hidden, the toggle below will open it
+        cardBody.innerHTML =
+            '<h5>Description</h5>' +
+            '<div class="desc-box"><p>No description provided.</p></div>';
+ 
+        card.appendChild(cardBody);
+        console.log('No card body found — created one on the fly.');
+        card.className = card.className.replace('sprint-card ', 'sprint-card-expended ');
     }
     let isExp = cardBody.dataset.open === 'true';
     if(isExp){
         cardBody.style.display = 'none';
         //arrow.style.transform = 'rotate(0deg)';
         cardBody.dataset.open = 'false';
+        card.className = card.className.replace('sprint-card-expended ', 'sprint-card ');
         console.log('Card collapsed.');
     } else {
         cardBody.style.display = 'block';
         //arrow.style.transform = 'rotate(180deg)';
         cardBody.dataset.open = 'true';
+        card.className = card.className.replace('sprint-card ', 'sprint-card-expended ');
         console.log('Card expanded.');
     }
 });
+
+let allCards = document.querySelectorAll('.card-body');
+
+allCards.forEach(function(body) {
+    body.style.display = 'none';
+    body.dataset.open = 'false';
+});
+console.log('All card collapsed on page load Count:', allCards.length);
