@@ -1,6 +1,70 @@
+//localStorage
+// { name: 'ASD Test', description: 'Some desc', priority: 2, column: 'next' }
+
+function saveSprint(sprintsArray) {
+    let jsonString = JSON.stringify(sprintsArray);
+    localStorage.setItem('sprints', jsonString);
+    console.log('Saved to localStorage:', jsonString);
+}
+
+function loadSprints(){
+    let jsonString = localStorage.getItem('sprints');
+    if(jsonString === null){
+        console.log('No saved sprints found in local.');
+        return [];
+    }
+    let sprintsArray = JSON.parse(jsonString);
+    console.log('Loaded from localStorage:', sprintsArray);
+    return sprintsArray;
+}
+
+function buildCardElement(sprint){
+    let article = document.createElement('article');
+    article.className = 'sprint-card sc'+ selectedPriority; // making the class of the new card matching the format sc + priority + e (sprint-card-expended sc0e")
+    article.innerHTML = '<div class="card-inner">'+
+    '<svg class="dropdown-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">' +
+    '<path d="M4 4V10C4 12.2091 5.79086 14 8 14H20M20 14L16 10M20 14L16 18" ' +
+    'stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>'+
+    '</svg>'+
+    '<h4>'+sprintName+'</h4>'
+    +'<div class="priority-circle">'+selectedPriority+'</div>'+
+    '</div>'+
+    '<div class="card-body" style="display: none;">'+
+    '<h5>Description</h5>'+
+    '<div class="desc-box">'+
+    '<p>'+sprintDescription+'</p>'+
+    '</div>'+
+    '</div>';
+    return article;
+}
+
+function getColumnElement(columnName){
+    if(columnName === 'sprinted') return document.querySelector('.c0 .column-content');
+    if(columnName === 'curent') return document.querySelector('.c1 .column-content');
+    if(columnName === 'next') return document.querySelector('.c2 .column-content');
+    return null;
+}
+//page load, append it to the right column, if not skiped;
+
+let sprints = loadSprints();
+sprints.forEach(function(sprint){
+    let card = buildCardElement(sprint);
+    let column = getColumnElement(sprint.column);
+    if(column !== null){
+        column.appendChild(card);
+        //console.log('Card added to column:', sprint);
+    }
+});
+
+document.querySelectorAll('.card-body').forEach(function(body) {
+    body.style.display = 'none';
+    body.dataset.open = 'false';
+});
+
+console.log('Page load complete. Cards rendered:', sprints.length);
+
 //ADD SPRINT CARD
 // First need the priority, so i get them from click events, but looks like after it clicks the circle is not reseting so i need to loop the other buttons and reset thjem
-
 
 let selectedPriority = -1; //getting the priority btn by listening
 
