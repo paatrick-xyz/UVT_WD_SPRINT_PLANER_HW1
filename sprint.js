@@ -1,7 +1,7 @@
 //localStorage
 // { name: 'ASD Test', description: 'Some desc', priority: 2, column: 'next' }
 
-function saveSprint(sprintsArray) {
+function saveSprints(sprintsArray) {
     let jsonString = JSON.stringify(sprintsArray);
     localStorage.setItem('sprints', jsonString);
     console.log('Saved to localStorage:', jsonString);
@@ -18,16 +18,18 @@ function loadSprints(){
     return sprintsArray;
 }
 
-function buildCardElement(sprint){
+function buildCardElement(sprint, index){
     let article = document.createElement('article');
-    article.className = 'sprint-card sc'+ sprint.prioity; // making the class of the new card matching the format sc + priority + e (sprint-card-expended sc0e")
+    article.className = 'sprint-card sc'+ sprint.priority; // making the class of the new card matching the format sc + priority + e (sprint-card-expended sc0e")
+    article.draggable = true;
+    article.dataset.index = index;
     article.innerHTML = '<div class="card-inner">'+
     '<svg class="dropdown-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">' +
     '<path d="M4 4V10C4 12.2091 5.79086 14 8 14H20M20 14L16 10M20 14L16 18" ' +
     'stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>'+
     '</svg>'+
     '<h4>'+sprint.name+'</h4>'
-    +'<div class="priority-circle">'+ sprint.prioity +'</div>'+
+    +'<div class="priority-circle">'+ sprint.priority +'</div>'+
     '</div>'+
     '<div class="card-body" style="display: none;">'+
     '<h5>Description</h5>'+
@@ -36,6 +38,13 @@ function buildCardElement(sprint){
     '</div>'+
     '</div>';
     return article;
+}
+
+function getColumnName(columnElement){
+    if(columnElement.classList.contains('c0')) return 'sprinted';
+    if(columnElement.classList.contains('c1')) return 'curent';
+    if(columnElement.classList.contains('c2')) return 'next';
+    return null;
 }
 
 function getColumnElement(columnName){
@@ -47,12 +56,12 @@ function getColumnElement(columnName){
 //page load, append it to the right column, if not skiped;
 
 let sprints = loadSprints();
-sprints.forEach(function(sprint){
-    let card = buildCardElement(sprint);
+sprints.forEach(function(sprint, index){
+    let card = buildCardElement(sprint, index);
     let column = getColumnElement(sprint.column);
     if(column !== null){
         column.appendChild(card);
-        //console.log('Card added to column:', sprint);
+        console.log('Card index:', index);
     }
 });
 
@@ -113,12 +122,12 @@ sprintForm.addEventListener('submit', function(event) {
     let newCard = {
         name:sprintName,
         description:sprintDescription,
-        prioity:selectedPriority,
+        priority:selectedPriority,
         column:'next'
     };
     sprints.push(newCard);
-    saveSprint(sprints);
-    let card = buildCardElement(newCard);
+    saveSprints(sprints);
+    let card = buildCardElement(newCard,sprints.length);
     let column = getColumnElement('next');
     column.appendChild(card);
     console.log('New sprint saved and added to board:', newCard);
@@ -193,3 +202,53 @@ allCards.forEach(function(body) {
     body.dataset.open = 'false';
 });
 console.log('All card collapsed on page load Count:', allCards.length);
+
+
+//DRAG & DROP SRRINTS
+//dragstart - event from the moment of the initial drag
+//dragover - fires to the column, need preventDefoult to allow drags
+//drop - fire to the column when click released
+
+let draggedCard = null;
+let draggedIndex = -1;
+
+document.querySelector('.sprint-board').addEventListener('dragstart', function(event) {
+    let card = event.target.closest('article');
+    if (card === null) return;
+    draggedCard = card;
+    draggedIndex = parseInt(card.dataset.index);
+    card.classList.add('dragging');
+    event.dataTransfer.effectAllowed = 'move';
+    console.log('Drag started:', draggedCard, 'Index:', draggedIndex);
+});
+
+document.querySelector('.sprint-board').addEventListener('dragend', function(event) {
+    if(draggedCard !== null){
+        draggedCard.classList.remove('dragging');
+    }
+    draggedCard = null;
+    draggedIndex = -1;
+    console.log('Drag ended.');
+});
+
+let columns = document.querySelectorAll('.column-content');
+
+columns.forEach(function(column) {
+    column.addEventListener('dragover', function(event) {
+        event.preventDefault();
+        event.dataTransfer.dropEffect = 'move';
+        console.log('Drag over column:', column);
+    });
+
+    column.addEventListener('drop', function(event) {
+        event.preventDefault();
+        column.classList.remove('drag-over');
+        if(draggedCard === null) return;
+        column.appendChild(draggedCard);
+        let newColumn = getColumnName(column);
+        sprints[draggedIndex].column = newColumn;
+        saveSprints(sprints);
+        console.log('Card dropped in column:', newColumn, 'Updated sprint:', sprints[draggedIndex]);
+    });
+
+});
