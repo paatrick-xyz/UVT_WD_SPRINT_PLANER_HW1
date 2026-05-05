@@ -18,6 +18,21 @@ function loadSprints(){
     return sprintsArray;
 }
 
+function updateColumnCounter(){
+    let columns=[
+        {section: '.c0', label: 'Sprinted'},
+        {section: '.c1', label: 'Current Sprint'},
+        {section: '.c2', label: 'Next Sprint'}
+    ];
+    columns.forEach(function(col){
+        let content = document.querySelector(col.section + ' .column-content');
+        let header = document.querySelector(col.section + ' .column-header h3');
+        if (content === null || header === null) return;
+        let count = content.querySelectorAll('article').length;
+        header.textContent = col.label + ' (' + count + ')';
+    });
+}
+
 function buildCardElement(sprint, index){
     let article = document.createElement('article');
     article.className = 'sprint-card sc'+ sprint.priority; // making the class of the new card matching the format sc + priority + e (sprint-card-expended sc0e")
@@ -41,9 +56,10 @@ function buildCardElement(sprint, index){
 }
 
 function getColumnName(columnElement){
-    if(columnElement.classList.contains('c0')) return 'sprinted';
-    if(columnElement.classList.contains('c1')) return 'curent';
-    if(columnElement.classList.contains('c2')) return 'next';
+    let section = columnElement.closest('.board-column');
+    if(section.classList.contains('c0')) return 'sprinted';
+    if(section.classList.contains('c1')) return 'curent';
+    if(section.classList.contains('c2')) return 'next';
     return null;
 }
 
@@ -71,7 +87,7 @@ document.querySelectorAll('.card-body').forEach(function(body) {
 });
 
 console.log('Page load complete. Cards rendered:', sprints.length);
-
+updateColumnCounter();
 //ADD SPRINT CARD
 // First need the priority, so i get them from click events, but looks like after it clicks the circle is not reseting so i need to loop the other buttons and reset thjem
 
@@ -131,7 +147,7 @@ sprintForm.addEventListener('submit', function(event) {
     let column = getColumnElement('next');
     column.appendChild(card);
     console.log('New sprint saved and added to board:', newCard);
-
+    updateColumnCounter();
     document.getElementById('sprint-name').value = '';
     document.getElementById('sprint-desc').value = '';
     selectedPriority = -1;
@@ -240,6 +256,15 @@ columns.forEach(function(column) {
         console.log('Drag over column:', column);
     });
 
+    column.addEventListener('dragenter', function(event) {
+        event.preventDefault();
+        column.classList.add('drag-over');
+    });
+
+    column.addEventListener('dragleave', function(event) {
+        column.classList.remove('drag-over');
+    });
+
     column.addEventListener('drop', function(event) {
         event.preventDefault();
         column.classList.remove('drag-over');
@@ -249,6 +274,7 @@ columns.forEach(function(column) {
         sprints[draggedIndex].column = newColumn;
         saveSprints(sprints);
         console.log('Card dropped in column:', newColumn, 'Updated sprint:', sprints[draggedIndex]);
+        updateColumnCounter();
     });
 
 });
