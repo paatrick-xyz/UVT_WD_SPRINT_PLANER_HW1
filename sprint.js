@@ -43,8 +43,14 @@ function buildCardElement(sprint, index){
     '<path d="M4 4V10C4 12.2091 5.79086 14 8 14H20M20 14L16 10M20 14L16 18" ' +
     'stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>'+
     '</svg>'+
-    '<h4>'+sprint.name+'</h4>'
-    +'<div class="priority-circle">'+ sprint.priority +'</div>'+
+    '<h4>'+sprint.name+'</h4>' +
+    '<div class="delete-button">'+
+    '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">'+
+    '<path d="M3 6H5H21M19 6V19C19 20.1046 18.1046 21 17 21H7C5.89543 21 5 20.1046 5 19V6M8 6V4C8 2.89543 8.89543 2 10 2H14C15.1046 2 16 2.89543 16 4V6"' +
+    'stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>'+
+    '</svg>'+
+    '</div>'+
+    '<div class="priority-circle">'+ sprint.priority +'</div>'+
     '</div>'+
     '<div class="card-body" style="display: none;">'+
     '<h5>Description</h5>'+
@@ -53,6 +59,7 @@ function buildCardElement(sprint, index){
     '</div>'+
     '</div>';
     return article;
+
 }
 
 function getColumnName(columnElement){
@@ -156,6 +163,7 @@ sprintForm.addEventListener('submit', function(event) {
         btn.style.color = '';
     });
     console.log('Form reset after submission.');
+    window.location.reload(); // seams like when i create a new sprint and try to move it to antother column the index is not updating and after i refresh the page there is no problem :)
 
     //<div class="card-inner">
     //                    <svg class="dropdown-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -277,4 +285,19 @@ columns.forEach(function(column) {
         updateColumnCounter();
     });
 
+});
+
+//delete card drom div svg, need to find the card and delete it from the array and local storage
+
+document.querySelector('.sprint-board').addEventListener('click', function(event) {
+    let deleteBtn = event.target.closest('.delete-button');
+    if (deleteBtn === null) return;
+    let card= deleteBtn.closest('article');
+    if (card === null) return;
+    let index = parseInt(card.dataset.index);
+    sprints.splice(index, 1);
+    saveSprints(sprints);
+    card.remove();
+    console.log('Card deleted. Index:', index, 'Updated sprints:', sprints);
+    updateColumnCounter();
 });
