@@ -245,7 +245,7 @@ main{
 .column-header h3{
     font-family: var(--main-font);
     font-weight: var(--font-weight-bold);
-    font-size: 30px;
+    font-size: 1.563vw;
     margin: 0;
 }
 
@@ -281,7 +281,7 @@ main{
 
 .card-inner h4{
     margin: 0;
-    font-size: 24px;
+    font-size: 1.25vw;
     flex-grow: 1;
     color: #000;
     font-family: var(--main-font);
@@ -318,7 +318,7 @@ main{
 }
 
 .card-body{
-    padding: 10px 20px 20px 20px;
+    padding: 2px 20px 20px 20px;
     padding-bottom: 0px;
     margin-top: -2px;
     font-size: 24px;
@@ -500,10 +500,35 @@ article{
 
 .drag-over{
     background-color: #EAF2FB;
-    outline: 3px dashed #3084A3;
+    outline: 3px dashed #000;
     outline-offset: -6px;
     border-radius: 0 0 10px 10px;
     transition: background-color 0.2s ease;
+}
+
+.drag-over-0{
+    outline-color: var(--pr0-color);
+    background-color: #A52B3518;
+}
+.drag-over-1{
+    outline-color: var(--pr1-color);
+    background-color: #E7873818;
+}
+.drag-over-2{
+    outline-color: var(--pr2-color);
+    background-color: #F4C61718;
+}
+.drag-over-3{
+    outline-color: var(--pr3-color);
+    background-color: #E6E02B18;
+}
+.drag-over-4{
+    outline-color: var(--pr4-color);
+    background-color: #3084A318;
+}
+.drag-over-5{
+    outline-color: var(--pr5-color);
+    background-color: #4EA24D18;
 }
 
 .delete-button{

@@ -266,16 +266,19 @@ columns.forEach(function(column) {
 
     column.addEventListener('dragenter', function(event) {
         event.preventDefault();
-        column.classList.add('drag-over');
+        let prioirtyLevel= draggedCard.querySelector('.priority-circle').textContent;
+        column.classList.add('drag-over','drag-over-' + prioirtyLevel);
     });
 
     column.addEventListener('dragleave', function(event) {
-        column.classList.remove('drag-over');
+        let prioirtyLevel= draggedCard.querySelector('.priority-circle').textContent;
+        column.classList.remove('drag-over','drag-over-' + prioirtyLevel);
     });
 
     column.addEventListener('drop', function(event) {
         event.preventDefault();
-        column.classList.remove('drag-over');
+        let prioirtyLevel= draggedCard.querySelector('.priority-circle').textContent;
+        column.classList.remove('drag-over','drag-over-' + prioirtyLevel);
         if(draggedCard === null) return;
         column.appendChild(draggedCard);
         let newColumn = getColumnName(column);
