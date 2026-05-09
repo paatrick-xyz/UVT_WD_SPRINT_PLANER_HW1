@@ -321,12 +321,24 @@ main{
 }
 
 .card-body{
+    display: flex;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease;
     padding: 2px 20px 20px 20px;
     padding-bottom: 0px;
     margin-top: -2px;
     font-size: 24px;
     font-weight: var(--font-weight-reg);
     color: #000;
+}
+
+.card-body.is-open {
+    grid-template-rows: 1fr;
+    padding-bottom: 20px;
+}
+
+.card-body-inner {
+    min-height: 0;
 }
 
 .desc-label{
@@ -407,14 +419,15 @@ main{
 
 .info-content{
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 20px;
     padding: 20px;
 }
 
 .p_pic{
-    width: 250px;
-    height: 235px;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
     object-fit: cover;
     margin-left: 10px;
