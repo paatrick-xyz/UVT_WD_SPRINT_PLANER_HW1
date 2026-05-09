@@ -12,9 +12,9 @@
 <body>
     <a href="#main_content" class="skip-link">Skip to main content</a>
     <main id="main_content">
-    <section class="new-sprint-card about-me-section">
-        <header class="add-header">
-                <h2>About me</h2>
+    <div class="new-sprint-card about-me-section">
+        <header class="column-header">
+                <h3>About me</h3>
         </header>
         <div class="info-content">
             <img src="DRG_6609.JPG" alt="Profile Pic" class="p_pic">
@@ -25,7 +25,7 @@
                 <P>An 1, UVT</P>
             </div>
         </div>
-    </section>
+    </div>
 
     <div class="sprint-board">
         <section class="board-column c0">
@@ -33,7 +33,74 @@
                 <h3>About the project</h3>
             </header>
             <div class="about-project">
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <div class="title-block">
+                    <h1>Study Sprint <br>   
+                            Planner</h1>
+                        <br>
+                    <p>A vanilla JavaScript application for tracking your study priorities</p>
+                </div>
+                <div class="dots-bar">
+                    <div class="dot pr0">1
+                    </div>
+                    <div class="dot pr1">2
+                    </div>
+                    <div class="dot pr2">3
+                    </div>
+                    <div class="dot pr3">4
+                    </div>
+                    <div class="dot pr4">5
+                    </div>
+                    <div class="dot pr5">6
+                    </div>
+                </div>
+            </div>
+            <hr class="divider">
+            <div class="section">
+                <p class="section-title">What it does</p>
+                <p class="pr">The planner lets you create study tasks (sprints) and drag them across three columns: Next Sprint, Curent Sprint and Sprinted. Everything is saved to <span class="inline-code">localStorage</span> so your boards will be preserved between sessions.</p>
+            </div>
+            <div class="section">
+                <p class="section-title">Priority system</p>
+                <p class="pr">Each sprint gets one of six colore-coded prioritie, defined as CSS variables:</p>
+                <br>
+                <div class="pr-row">
+                    <span class="circle pr0">Priority 0</span>
+                    <span class="circle pr1">Priority 1</span>
+                    <span class="circle pr2">Priority 2</span>
+                    <span class="circle pr3">Priority 3</span>
+                    <span class="circle pr4">Priority 4</span>
+                    <span class="circle pr5">Priority 5</span>
+                </div>
+                <div class="code-block">                        --pr0-color: #A52B35; 
+                        --pr1-color: #E78738;
+                        --pr2-color: #F4C617;
+                        --pr3-color: #E6E02B;
+                        --pr4-color: #3084A3;
+                        --pr5-color: #4EA24D;</div>
+            </div>
+            <hr class="divider">
+            <div class="section">
+                <p class="section-title">How data is stored</p>
+                <p class="pr">Every sprint is a plain object with four fields. The whole board is one JSON array in <span class="inline-code">localStorage</span> under the key <span class="inline-code">'sprints'</span>:</p>
+                    <div class="code-block">{ <span class="hl">name</span>: 'ASD Test', <span class="hl">description</span>: 'Some desc',
+                        <span class="hl">priority</span>: 2,}
+                        <span class="hl">saveSprints(array)</span>
+                        <span class="hl">loadSprints()</span> </div>
+                    <p class="pr">When a sprint is dragged to a new column, <span class="inline-code">sprints[draggedIndex].column</span> is updated and <span class="inline-code">saveSprints()</span> is called immediately — no server, no sync delay.</p>
+            </div>
+            <hr class="divider">
+            <div class="section">
+                <p class="section-title">Drag and Drop</p>
+                <p class="pr">Drag-and-drop uses the native HTML5 API. The dragged card's priority level is read from its <span class="inline-code">.priority-circle</span> to paint the drop zone in the matching color:</p>
+                    <div class="code-block">column.addEventListener('dragenter', function(event) {
+                        let <span class="hl">level</span> = draggedCard
+                            .querySelector('<span class="hl">.priority-circle</span>').textContent;
+                        content.classList.add(
+                            'drag-over',
+                            '<span class="hl">drag-over-' + level + '</span>'
+                        );
+                        });</div>
+
             </div>
         </section>
     </div>

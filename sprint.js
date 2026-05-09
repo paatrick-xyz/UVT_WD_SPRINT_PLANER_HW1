@@ -255,9 +255,10 @@ document.querySelector('.sprint-board').addEventListener('dragend', function(eve
     console.log('Drag ended.');
 });
 
-let columns = document.querySelectorAll('.column-content');
+let columns = document.querySelectorAll('.board-column');
 
 columns.forEach(function(column) {
+    let content = column.querySelector('.column-content');
     column.addEventListener('dragover', function(event) {
         event.preventDefault();
         event.dataTransfer.dropEffect = 'move';
@@ -267,20 +268,20 @@ columns.forEach(function(column) {
     column.addEventListener('dragenter', function(event) {
         event.preventDefault();
         let prioirtyLevel= draggedCard.querySelector('.priority-circle').textContent;
-        column.classList.add('drag-over','drag-over-' + prioirtyLevel);
+        content.classList.add('drag-over','drag-over-' + prioirtyLevel);
     });
 
     column.addEventListener('dragleave', function(event) {
         let prioirtyLevel= draggedCard.querySelector('.priority-circle').textContent;
-        column.classList.remove('drag-over','drag-over-' + prioirtyLevel);
+        content.classList.remove('drag-over','drag-over-' + prioirtyLevel);
     });
 
     column.addEventListener('drop', function(event) {
         event.preventDefault();
         let prioirtyLevel= draggedCard.querySelector('.priority-circle').textContent;
-        column.classList.remove('drag-over','drag-over-' + prioirtyLevel);
+        content.classList.remove('drag-over','drag-over-' + prioirtyLevel);
         if(draggedCard === null) return;
-        column.appendChild(draggedCard);
+        content.appendChild(draggedCard);
         let newColumn = getColumnName(column);
         sprints[draggedIndex].column = newColumn;
         saveSprints(sprints);
