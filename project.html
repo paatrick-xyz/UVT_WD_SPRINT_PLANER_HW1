@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="portfolio.css">
+    
+    <title>Project Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geologica:wght,CRSV@100..900,0&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <a href="#main_content" class="skip-link">Skip to main content</a>
+    <header>
+        <h1>Project Portfolio</h1>
+    </header>
+    <main id="main_content">
+    
+    <section class="new-sprint-card">
+        <form class="add-sprint" id="portfolio-form" novalidate>
+            <fieldset>
+                <header class="add-header">
+                    <legend><h2>Add Project</h2></legend>
+                </header>
+                
+                <div style="padding: 30px;">
+                    <div class="form-group">
+                        <label for="proj-name">Project Name</label>
+                        <input type="text" id="proj-name" name="proj-name" aria-describedby="name-error" required>
+                        <span id="name-error" class="error-msg" aria-live="polite"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="proj-url">Repository / Live URL</label>
+                        <input type="url" id="proj-url" name="proj-url" aria-describedby="url-error" placeholder="https://" required>
+                        <span id="url-error" class="error-msg" aria-live="polite"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="proj-date">Completion Date</label>
+                        <input type="date" id="proj-date" name="proj-date" aria-describedby="date-error" required>
+                        <span id="date-error" class="error-msg" aria-live="polite"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="proj-tech">Main Technology</label>
+                        <select id="proj-tech" name="proj-tech" aria-describedby="tech-error" required style="width: 100%; background: #FFFFFF; border: none; border-radius: 10px; padding: 15px; margin-bottom: 25px; font-family: var(--main-font);">
+                            <option value="">-- Select One --</option>
+                            <option value="Vanilla JS">Vanilla JS</option>
+                            <option value="HTML/CSS">HTML/CSS Only</option>
+                            <option value="Python">Python</option>
+                            <option value="C/C++">C/C++</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <span id="tech-error" class="error-msg" aria-live="polite"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="proj-desc">Description</label>
+                        <textarea id="proj-desc" name="proj-desc" class="sprint-desc-area" aria-describedby="desc-error" required></textarea>
+                        <span id="desc-error" class="error-msg" aria-live="polite"></span>
+                    </div>
+
+                    <button type="submit" class="submit-btn">ADD TO PORTFOLIO +</button>
+                    <button type="reset" class="submit-btn" style="background: #FAFAFA; color: #000; border: 2px solid #000; margin-top: 10px;">RESET FORM</button>
+                </div>
+            </fieldset>
+        </form>
+    </section>
+
+    <div class="sprint-board">
+        <section class="board-column c0" style="border-radius: 25px; flex-grow: 1;">
+            <div class="column-content" style="padding: 30px;">
+                
+                <div class="table-responsive">
+                    <table class="project-table" id="portfolio-table">
+                        <caption>Submitted Projects</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Thumbnail</th>
+                                <th scope="col">Project Name</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Technologies</th>
+                                <th scope="col">Completed</th>
+                                <th scope="col">Link</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                            
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </section>
+    </div>
+    </main>
+
+    <div class="bottom-nav">
+        <nav>
+            <ul>
+                <li><a href="about.html">About me & Project</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="project.html">My Projects</a></li>
+            </ul>
+        </nav>
+    </div>
+<script src="portfolio.js"></script>
+</body>
+</html>
